@@ -1,20 +1,34 @@
 import React from "react";
 import logo from "../../images/LogoBN.png";
-import "./NavBar.css";
+
+/* ******************************** */
+//import "./NavBar.css";
+//APAGUEI O IMPORT DO STYLED
+
+import { Button, ImageLogo, InputSpace, Nav } from "./NavBarStyled";
+/* ******************************** */
 
 function NavBar() {
   return (
-    <nav>
-      <div className="input-search-space">
+    <Nav>
+      <InputSpace>
         <i class="bi bi-search"></i>
-        <input type="text" placeholder="pesquise por um título"/>
-      </div>
+        <input type="text" placeholder="pesquise por um título" />
+      </InputSpace>
 
-      <img src={logo} alt="Logo Breaking News" />
+      <ImageLogo src={logo} alt="Logo Breaking News" />
 
-      <button>Entrar</button>
-    </nav>
+      <Button>Entrar</Button>
+    </Nav>
   );
+}
+
+{
+  /* ******************************** */
+}
+//APAGUEI E TRANSFERI PARA "NavBarStyled.js"
+{
+  /* ******************************** */
 }
 
 export default NavBar;
