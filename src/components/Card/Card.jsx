@@ -1,27 +1,31 @@
-import React from 'react'
+import React from "react";
+import { CardContainer } from "./CardStyled";
+import { CardBody } from "./CardStyled";
+import { CardFooter } from "./CardStyled";
 
-function Card({props}) {
+function Card({ news }) {
   return (
-    <section>
-      <h2>{props.title}</h2>
-      <p>{props.text}</p>
-      <img src={props.image} alt="Imagem"/>
-      <i className="bi bi-hand-thumbs-up"></i>
-      <spam>{props.likes}</spam>
-      <i className="bi bi-chat"></i>
-      <span>{props.comments}</span>
-    </section>
-  )
+    <CardContainer>
+      <CardBody>
+        <div>
+          <h2>{news.title}</h2>
+          <p>{news.text}</p>
+        </div>
+        <img src={news.image} alt="Imagem" />
+      </CardBody>
+
+      <CardFooter>
+        <div>
+          <i className="bi bi-hand-thumbs-up"></i>
+          <span>{news.likes}</span>
+        </div>
+        <div>
+          <i className="bi bi-chat"></i>
+          <span>{news.comments}</span>
+        </div>
+      </CardFooter>
+    </CardContainer>
+  );
 }
 
-{/* <section>
-      <h2>{news[0].title}</h2>
-      <p>{news[0].text}</p>
-      <img src={news[0].image} alt="Imagem"/>
-      <i class="bi bi-hand-thumbs-up"></i>
-      <spam>{news[0].likes}</spam>
-      <i class="bi bi-chat"></i>
-      <span>{news[0].comments}</span>
-    </section> */}
-
-export default Card
+export default Card;

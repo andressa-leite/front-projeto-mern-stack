@@ -4,13 +4,14 @@ export const Nav = styled.nav`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100vw;
+  max-width: 100vw;
   padding: 0.2rem 0;
   position: relative;
   top: 0;
   background-color: white;
   z-index: 1;
   box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px;
+  padding-right: 2rem
 `;
 
 export const ImageLogo = styled.img`

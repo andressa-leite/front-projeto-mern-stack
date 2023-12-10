@@ -1,15 +1,18 @@
 import React from "react";
 import NavBar from "../../components/NavBar/NavBar";
 import Card from "../../components/Card/Card";
-import { props } from "../../Data";
+import { news } from "../../Data";
+import { HomeBody } from "./HomeStyled";
 
 function Home() {
   return (
     <>
       <NavBar />
-      {props.map((item, index) => {
-        return <Card key={index} props={item} />;
-      })}
+      <HomeBody>
+        {news.map((item, index) => {
+          return <Card key={index} news={item} />;
+        })}
+      </HomeBody>
     </>
   );
 }

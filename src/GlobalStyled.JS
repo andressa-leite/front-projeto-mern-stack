@@ -13,9 +13,13 @@ export const GlobalStyled = createGlobalStyle`
   }
 
   body {
-    max-width: 100vh;
+    max-width: 100vw;
     height: 100vh;
     background-color: #f5f5f5;
   }
+
+
+
+ 
 
 `;
