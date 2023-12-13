@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import NavBar from "../../components/NavBar/NavBar";
 import Card from "../../components/Card/Card";
 //import { news } from "../../Data";
@@ -13,10 +13,13 @@ function Home() {
     setNews(response.data.results);
   }
 
-  findAllPosts();
+ // findAllPosts();
+ useEffect(() => {
+  findAllPosts()
+ }, [])
 
   return (
-    <>
+    <> 
       <NavBar />
       <HomeBody>
         {news.map((item) => {
