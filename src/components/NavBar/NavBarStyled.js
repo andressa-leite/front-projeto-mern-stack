@@ -66,7 +66,7 @@ export const Button = styled.button`
   cursor: pointer;
   border-radius: 0.3rem;
   font-family: Roboto, Arial;
-  width: 15%;
+  width: 10%;
   font-weight: 500;
   letter-spacing: 0.1rem;
   text-transform: uppercase;
