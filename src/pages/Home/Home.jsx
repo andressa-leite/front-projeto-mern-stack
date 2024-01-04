@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import NavBar from "../../components/NavBar/NavBar";
 import Card from "../../components/Card/Card";
-//import { news } from "../../Data";
 import { HomeBody } from "./HomeStyled";
 import { getAllPosts } from "../../services/postsService";
 
