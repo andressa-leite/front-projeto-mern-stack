@@ -2,19 +2,19 @@ import React, { useEffect, useState } from "react";
 import NavBar from "../../components/NavBar/NavBar";
 import Card from "../../components/Card/Card";
 import { HomeBody } from "./HomeStyled";
-import { getAllPosts } from "../../services/postsService";
+import { getAllNews } from "../../services/newsService";
 
 function Home() {
   const [news, setNews] = useState([]);
 
-  async function findAllPosts() {
-    const response = await getAllPosts();
+  async function findAllNews() {
+    const response = await getAllNews();
     setNews(response.data.results);
   }
 
  // findAllPosts();
  useEffect(() => {
-  findAllPosts()
+  findAllNews()
  }, [])
 
   return (

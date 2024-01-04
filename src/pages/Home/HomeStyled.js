@@ -7,4 +7,5 @@ export const HomeBody = styled.section`
     gap: 1rem;
     width: 95%;
     margin: 0 auto;
+    margin-top: 1rem;
 `;

@@ -11,6 +11,7 @@ export const CardContainer = styled.section`
     border-radius: 0.3rem;
     padding: 2rem;
     box-sizing: border-box;
+    background-color: white;
 `;
 
 export const CardBody = styled.article`
@@ -23,8 +24,9 @@ export const CardBody = styled.article`
     gap: 1rem;
 
     img {
-        width: 50%;
-        height: 11rem;
+        width: 40%;
+        height: 7rem;
+        padding-left: 0.5rem;
     }
 
     h2{
