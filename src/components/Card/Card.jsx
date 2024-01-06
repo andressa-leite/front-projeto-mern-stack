@@ -7,14 +7,7 @@ import { TextLimit } from "../TextLimit/TextLimit";
 function Card(props) {
   return (
     <CardContainer>
-      {/* <CardBody>
-        <div>
-          <h2>{props.title}</h2>
-          <p>{props.text}</p>
-        </div>
-        <img src={props.banner} alt="Imagem" />
-      </CardBody> */}
-      <CardBody>
+      <CardBody top={props.top}>
         <div>
           <h2>{props.title}</h2>
           <img src={props.banner} alt="Imagem" />
@@ -26,11 +19,11 @@ function Card(props) {
       <CardFooter>
         <div>
           <i className="bi bi-hand-thumbs-up"></i>
-          <span>{props.likes}</span>
+          <span>{props.likes?.length}</span>
         </div>
         <div>
           <i className="bi bi-chat"></i>
-          <span>{props.comments}</span>
+          <span>{props.comments?.length}</span>
         </div>
       </CardFooter>
     </CardContainer>

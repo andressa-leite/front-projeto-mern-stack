@@ -1,25 +1,39 @@
 import React, { useEffect, useState } from "react";
 import NavBar from "../../components/NavBar/NavBar";
 import Card from "../../components/Card/Card";
-import { HomeBody } from "./HomeStyled";
-import { getAllNews } from "../../services/newsService";
+import { HomeBody, HomeHeader } from "./HomeStyled";
+import { getAllNews, getTopNews } from "../../services/newsService";
 
 function Home() {
   const [news, setNews] = useState([]);
+  const [topNews, setTopNews] = useState({});
 
   async function findAllNews() {
     const response = await getAllNews();
     setNews(response.data.results);
+
+    const topNewsResponse = await getTopNews();
+    setTopNews(topNewsResponse.data.news);
+    console.log(topNewsResponse.data.news);
   }
 
- // findAllPosts();
- useEffect(() => {
-  findAllNews()
- }, [])
+  useEffect(() => {
+    findAllNews();
+  }, []);
 
   return (
-    <> 
+    <>
       <NavBar />
+      <HomeHeader>
+        <Card
+          top={true}
+          title={topNews.title}
+          text={topNews.text}
+          banner={topNews.banner}
+          likes={topNews.likes}
+          comments={topNews.comments}
+        />
+      </HomeHeader>
       <HomeBody>
         {news.map((item) => {
           return (
@@ -28,8 +42,8 @@ function Home() {
               title={item.title}
               text={item.text}
               banner={item.banner}
-              likes={item.likes.length}
-              comments={item.comments.length}
+              likes={item.likes}
+              comments={item.comments}
             />
           );
         })}
