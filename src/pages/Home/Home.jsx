@@ -23,7 +23,7 @@ function Home() {
 
   return (
     <>
-      <NavBar />
+      {/* <NavBar /> */}
       <HomeHeader>
         <Card
           top={true}
