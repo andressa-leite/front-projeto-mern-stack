@@ -44,7 +44,7 @@ export const InputSpace = styled.div`
 
   button:hover {
     background-color: #acacac;
-    color: #f5f5f5
+    color: #f5f5f5;
   }
 
   input {
@@ -80,4 +80,14 @@ export const Button = styled.button`
   &:hover {
     background-color: #073a4b;
   }
+`;
+
+export const ErrorSpam = styled.span`
+  background-color: #ffaeae;
+  color: #9e0000;
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  font-size: 1.1rem;
+  font-weight: bold;
 `;
