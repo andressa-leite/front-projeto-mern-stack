@@ -62,7 +62,7 @@ export const InputSpace = styled.div`
   }
 `;
 
-export const Button = styled.button`
+/* export const Button = styled.button`
   background-color: #0bade3;
   border: none;
   outline: none;
@@ -80,7 +80,7 @@ export const Button = styled.button`
   &:hover {
     background-color: #073a4b;
   }
-`;
+`; */
 
 export const ErrorSpam = styled.span`
   background-color: #ffaeae;

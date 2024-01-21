@@ -7,7 +7,7 @@ export const HomeBody = styled.section`
     gap: 1rem;
     width: 80%;
     margin: 0 auto;
-    margin-top: 1rem;
+   
 `;
 
 export const HomeHeader = styled.section`

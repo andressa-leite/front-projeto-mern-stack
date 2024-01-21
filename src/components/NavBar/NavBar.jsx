@@ -1,21 +1,32 @@
 import React from "react";
 import logo from "../../images/LogoBN.png";
-import { Button, ImageLogo, InputSpace, Nav } from "./NavBarStyled";
+import { ErrorSpam, ImageLogo, InputSpace, Nav } from "./NavBarStyled";
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 
-import { z } from zod;
-import { zodResolver } from "ghookform/resolvers/zod"
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Button } from "../Button/Button";
 
 function NavBar() {
-  const { register, handleSubmit, reset, formState: { errors} } = useForm({
-    resolver: zodResolver(searchSchema)
+  const searchSchema = z.object({
+    title: z
+      .string()
+      .nonempty({ message: "search must be non empty" })
+      .refine((value) => !/^\s*$/.test(value), {
+        message: "invalid search submission",
+      }),
+  });
+
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm({
+    resolver: zodResolver(searchSchema),
   });
   const navigate = useNavigate();
-
-  const searchSchema = z.object({
-    title: z.string().nonempty({ message: "search must be non empty"}).refine((value => !/^\s*$/.test(value)), {message:"invalid search submission"})
-  });
 
   function onSearch(data) {
     /* console.log(data); */
@@ -23,6 +34,11 @@ function NavBar() {
     navigate(`/search/${title}`);
     reset();
   }
+
+  /*  function goAuth() {
+    navigate("/auth");
+  } */
+
   return (
     <>
       <Nav>
@@ -39,10 +55,14 @@ function NavBar() {
             />
           </InputSpace>
         </form>
-        <Link to="/"> 
+        <Link to="/">
           <ImageLogo src={logo} alt="Logo Breaking News" />
         </Link>
-        <Button>Entrar</Button>
+        <Link to="/auth">
+          <Button type="button" text="Entrar">
+            Entrar
+          </Button>
+        </Link>
       </Nav>
       {errors.title && <ErrorSpam>{errors.title.message}</ErrorSpam>}
       <Outlet />
