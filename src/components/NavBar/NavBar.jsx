@@ -1,23 +1,13 @@
 import React from "react";
 import logo from "../../images/LogoBN.png";
-import { ErrorSpam, ImageLogo, InputSpace, Nav } from "./NavBarStyled";
+import { ErrorSpan, ImageLogo, InputSpace, Nav } from "./NavBarStyled";
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
-
-import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "../Button/Button";
+import { searchSchema } from "../../schemas/searchSchema";
 
 function NavBar() {
-  const searchSchema = z.object({
-    title: z
-      .string()
-      .nonempty({ message: "search must be non empty" })
-      .refine((value) => !/^\s*$/.test(value), {
-        message: "invalid search submission",
-      }),
-  });
-
   const {
     register,
     handleSubmit,
@@ -64,7 +54,7 @@ function NavBar() {
           </Button>
         </Link>
       </Nav>
-      {errors.title && <ErrorSpam>{errors.title.message}</ErrorSpam>}
+      {errors.title && <ErrorSpan>{errors.title.message}</ErrorSpan>}
       <Outlet />
     </>
   );

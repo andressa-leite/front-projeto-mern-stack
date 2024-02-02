@@ -4,26 +4,48 @@ import { Button } from "../../components/Button/Button";
 import { Input } from "../../components/input/input";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { signinSchema } from "../../schemas/signinSchema";
+import { signupSchema } from "../../schemas/signupSchema";
+import { ErrorSpan } from "../../components/NavBar/NavBarStyled";
+import { signup } from "../../services/userService";
+import Cookies from "js-cookie";
+import { useNavigate } from "react-router-dom";
 
 function Register_Auth() {
   const {
     register: registerSignup,
     handleSubmit: handleSubmitSignup,
     formState: { errors: errorsSignup },
-  } = useForm();
+  } = useForm({ resolver: zodResolver(signupSchema) });
 
   const {
     register: registerSignin,
     handleSubmit: handleSubmitSignin,
     formState: { errors: errorsSignin },
-  } = useForm();
+  } = useForm({ resolver: zodResolver(signinSchema) });
 
-  function inHandleSubmit(data) {
-    console.log(data);
+  async function inHandleSubmit(data) {
+    try {
+      const response = await signup(data);
+      Cookies.set("token", response.data.token, { expires: 1 });
+      navigate("/");
+      console.log(response);
+    } catch (error) {
+      console.error(error);
+    }
   }
 
-  function upHandleSubmit(data) {
-    console.log(data);
+  const navigate = useNavigate();
+
+  async function upHandleSubmit(data) {
+    try {
+      const response = await signup(data);
+      Cookies.set("data", response.data, { expires: 1 });
+      navigate("/");
+      console.log(response);
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   return (
@@ -38,6 +60,9 @@ function Register_Auth() {
             register={registerSignin}
             rule={{ required: true }}
           />
+          {errorsSignin.email && (
+            <ErrorSpan>{errorsSignin.email.message}</ErrorSpan>
+          )}
           <Input
             type="password"
             placeholder="password"
@@ -45,6 +70,9 @@ function Register_Auth() {
             register={registerSignin}
             rule={{ required: true }}
           />
+          {errorsSignin.password && (
+            <ErrorSpan>{errorsSignin.password.message}</ErrorSpan>
+          )}
           <Button type="submit" text="Entrar" />
         </form>
       </Section>
@@ -58,6 +86,9 @@ function Register_Auth() {
             register={registerSignup}
             rule={{ required: true }}
           />
+          {errorsSignup.name && (
+            <ErrorSpan>{errorsSignup.name.message}</ErrorSpan>
+          )}
           <Input
             type="email"
             placeholder="Email"
@@ -65,6 +96,9 @@ function Register_Auth() {
             register={registerSignup}
             rule={{ required: true }}
           />
+          {errorsSignup.email && (
+            <ErrorSpan>{errorsSignup.email.message}</ErrorSpan>
+          )}
           <Input
             type="password"
             placeholder="Password"
@@ -72,13 +106,19 @@ function Register_Auth() {
             register={registerSignup}
             rule={{ required: true }}
           />
+          {errorsSignup.password && (
+            <ErrorSpan>{errorsSignup.password.message}</ErrorSpan>
+          )}
           <Input
             type="password"
             placeholder="Confirm password"
-            name="password"
+            name="confirmPassword"
             register={registerSignup}
             rule={{ required: true }}
           />
+          {errorsSignup.password && (
+            <ErrorSpan>{errorsSignup.password.message}</ErrorSpan>
+          )}
           <Button type="submit" text="Cadastrar" />
         </form>
       </Section>
